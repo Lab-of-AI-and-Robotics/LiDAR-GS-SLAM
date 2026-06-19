@@ -1,0 +1,3 @@
+Newer College (Ouster OS0-128) Parameters
+# W    H    FovX   FovY  Min  Max    Type
+1024   128  360.0  90.0  0.5  120.0  newer

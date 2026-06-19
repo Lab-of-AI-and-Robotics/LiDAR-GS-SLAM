@@ -1,0 +1,36 @@
+# Replica Dataset Configuration
+# Based on original arguments/configs from LiDAR-GS
+
+data:
+  dataset_type: generic # Use generic since Replica isn't strictly one of the presets like KITTI
+  dataset_path: /path/to/Replica/room0
+  
+  cloud_reader:
+    cloud_format: ply # Assuming converted to PLY or similar
+    cloud_folder: /path/to/Replica/room0/pcd
+    timestamp_from_filename: True # cloud_1234.ply
+    
+  trajectory_reader:
+    reader_type: tum
+    filename: /path/to/Replica/room0/traj.txt
+
+slam:
+  # Replica specific params from original code
+  keyframe_th: 0.4
+  overlapped_th: 0.005
+  overlapped_th2: 0.005
+  max_correspondence_distance: 1.0 # 0.02 in original comments for Replica? Adjust as needed.
+  
+  downsample_rate: 10 # Original code comment says "replica:10"
+  keyframe_freq: 10   # Original code comment says "replica:10"
+  
+  # Sensor (Simulated)
+  W: 1200
+  H: 680 
+  # Note: Replica is RGB-D, so "LiDAR" simulation might vary.
+  # Adjust FOV to match the simulated sensor.
+  fov_x_deg: 90.0
+  fov_y_deg: 60.0
+  
+output_path: output/replica_room0
+verbose: True

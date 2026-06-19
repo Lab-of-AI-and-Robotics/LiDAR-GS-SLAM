@@ -1,0 +1,69 @@
+# Oxford Spires Dataset Configuration
+
+data:
+  dataset_type: oxspires
+  dataset_path: "/mnt/storage/Downloads/lidar_dataset/oxfordspires/Oxspires dataset/keble-college-02/"
+  min_depth: 0.0
+  max_depth: 60.0
+  
+  # Point Cloud Reader Options
+  cloud_reader:
+    cloud_format: rosbag
+    rosbag_topic: "/hesai/pandar"
+    # cloud_folder will default to dataset_path
+    
+  # Trajectory Reader (Ground Truth)
+  trajectory_reader:
+    reader_type: tum
+    filename: "/mnt/storage/Downloads/lidar_dataset/oxfordspires/Oxspires dataset/keble-college-02/gt-tum.txt" # Example file-name
+    timestamp_dtol: 20
+    # Oxford Spires Calibration (Hesai to Body)
+    gt_T_sensor_t_xyz_q_xyzw: [0, 0, 0.124, 0, 0, 1, 0] 
+    
+slam:
+  # GICP / Tracking
+  keyframe_th: 0.4
+  knn_maxd: 99999.0
+  max_correspondence_distance: 1.0
+  overlapped_th: 0.005
+  overlapped_th2: 0.005
+  
+  # 3DGS Mapping
+  trackable_opacity_th: 0.01
+  downsample_rate: 10
+  keyframe_freq: 100
+  n_trackable_keyframes: 100
+  use_dynamic_fov: True
+  
+  # densify related parameters
+  densify_threshold_opacity: 0.2
+  densify_percentage: 0.40
+  opt_scaling_max: 0.1
+  use_densify: True
+  densify_start_iteration: 100
+
+  # pruning related parameters
+  pruning_min_opacity: 0.05
+  pruning_min_scale: 0.001
+
+  # loss
+  opt_lambda_dist : 0.01
+  decay_speed: 0.02
+
+  loop_constraint_noise: 1e-6
+  loop_cooldown_time: 50.0
+  loop_overlap_th: 0.7
+  downsample_voxel_size: 0.4
+  
+  # Sensor Intrinsics (Hesai Pandar XT32 approx)
+  W: 1800
+  H: 64
+  fov_x_deg: 360.0
+  fov_y_deg: 104.0
+  depth_scale: 1.0
+  depth_trunc: 60.0
+
+# Output
+output_path: output/oxspires_result
+verbose: True
+demo: False

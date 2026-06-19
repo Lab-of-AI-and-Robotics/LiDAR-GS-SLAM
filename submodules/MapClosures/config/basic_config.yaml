@@ -1,0 +1,4 @@
+density_map_resolution: 0.5
+density_threshold: 0.05
+hamming_distance_threshold: 50
+inliers_threshold: 5

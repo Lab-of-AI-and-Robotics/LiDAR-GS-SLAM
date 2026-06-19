@@ -1,0 +1,64 @@
+# Newer College Dataset (NCD) - ROS Bag Configuration
+
+data:
+  dataset_type: ncd
+  dataset_path: "/mnt/storage/Downloads/lidar_dataset/newercollege"
+  min_depth: 0.5
+  max_depth: 120
+  
+  cloud_reader:
+    cloud_format: rosbag
+    rosbag_topic: /os_cloud_node/points
+    
+  trajectory_reader:
+    reader_type: tum
+    filename: "/mnt/storage/Downloads/lidar_dataset/newercollege/gt-nc-quad-easy.csv"
+    timestamp_dtol: 20
+    gt_T_sensor_t_xyz_q_xyzw: [0.001, 0, 0.091, 0, 0, 0, 1]
+
+slam:
+  # GICP / Tracking
+  keyframe_th: 0.6
+  knn_maxd: 99999.0
+  max_correspondence_distance: 1.0
+  overlapped_th: 0.005
+  overlapped_th2: 0.005
+  
+  # 3DGS Mapping
+  trackable_opacity_th: 0.01
+  downsample_rate: 10
+  keyframe_freq: 30
+  n_trackable_keyframes: 100
+  use_dynamic_fov: False
+  
+  # densify related parameters
+  densify_threshold_opacity: 0.2
+  densify_percentage: 0.40
+  opt_scaling_max: 0.1
+  use_densify: True
+  densify_start_iteration: 100
+
+  # pruning related parameters
+  pruning_min_opacity: 0.05
+  pruning_min_scale: 0.001
+
+  # loss
+  opt_lambda_dist : 0.01
+  decay_speed: 0.02
+
+  loop_constraint_noise: 1e-6
+  loop_cooldown_time: 50.0
+  downsample_voxel_size: 0.4
+  loop_overlap_th: 0.7
+  
+  
+  # Sensor Intrinsics Ouster OS1-64 Specs
+  W: 1024
+  H: 128
+  fov_x_deg: 360
+  fov_y_deg: 90 # +/- 22.5 deg
+  depth_scale: 1.0
+  depth_trunc: 120.0
+
+output_path: "output/ncd_result"
+verbose: True

@@ -1,0 +1,3 @@
+Hesai QT64 Sensor Parameters
+# W  H   FovX FovY Min Max Type
+1800 64  360  104  0.0 60.0 oxford

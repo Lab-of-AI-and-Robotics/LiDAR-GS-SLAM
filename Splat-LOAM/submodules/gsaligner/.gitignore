@@ -1,0 +1,7 @@
+__pycache__
+**/build/*
+.vscode
+venv/
+
+**.egg-info
+**.so
