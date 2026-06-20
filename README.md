@@ -8,6 +8,8 @@
 
 <h3 align="center">ECCV 2026</h3>
 
+[Project_Page]() | [Paper]() | [Video]()
+
 </div>
 
 ## Overview
